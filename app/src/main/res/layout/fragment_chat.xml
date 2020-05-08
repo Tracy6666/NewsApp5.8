@@ -30,6 +30,8 @@
         android:id="@+id/chatListView"
         android:layout_width="409dp"
         android:layout_height="549dp"
+        android:layout_above="@+id/chatEditText"
+        android:layout_marginBottom="2dp"
         tools:layout_editor_absoluteX="1dp"
         tools:layout_editor_absoluteY="1dp" />
 
@@ -37,10 +39,12 @@
         android:id="@+id/sendChatButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/chatListView"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginTop="-1dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="7dp"
         android:onClick="sendChat"
         android:text="Send" />
 

@@ -62,9 +62,9 @@ public class ChatFragment extends Fragment {
         });
 
         arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, messages);
-
         chatListView.setAdapter(arrayAdapter);
         arrayAdapter.notifyDataSetChanged();
+
 
         button = rootview.findViewById(R.id.sendChatButton);
         button.setOnClickListener(new AdapterView.OnClickListener(){

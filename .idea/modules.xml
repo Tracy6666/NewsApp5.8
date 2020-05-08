@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/NewsApplication5.7-master.iml" filepath="$PROJECT_DIR$/NewsApplication5.7-master.iml" group="NewsApplication5.7-master" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="NewsApplication5.7-master/app" />
+      <module fileurl="file://$PROJECT_DIR$/NewsApp5.8.iml" filepath="$PROJECT_DIR$/NewsApp5.8.iml" group="NewsApp5.8" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="NewsApp5.8/app" />
     </modules>
   </component>
 </project>

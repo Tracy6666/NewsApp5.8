@@ -1,4 +1,4 @@
-#Fri May 08 12:02:39 EDT 2020
-base.0=D\:\\Download\\NewsApplication5.7-master\\NewsApplication5.7-master\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
+#Fri May 08 19:30:52 EDT 2020
+base.0=D\:\\AndroidStudioProjects\\NewsApp5.8\\app\\build\\intermediates\\dex\\debug\\out\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
