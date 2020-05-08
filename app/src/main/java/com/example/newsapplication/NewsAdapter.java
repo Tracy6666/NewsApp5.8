@@ -46,7 +46,12 @@ public class NewsAdapter extends ArrayAdapter<News> {
 
         ImageView imageView = (ImageView)listItemView.findViewById(R.id.image);
         String url=currentNews.getImgUrl();
-        Picasso.with(getContext()).load(url).resize(400,400).into(imageView);
+        if(!StringUtil.isNullOrEmpty(url)) {
+            Picasso.with(getContext()).load(url).resize(400,400).into(imageView);
+        }else{
+            listItemView = LayoutInflater.from(getContext()).inflate(
+                    R.layout.list_item, parent, false);
+        }
         return listItemView;
     }
 }
