@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:text="Begin date:"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:id="@+id/phone"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yy"
+        android:layout_marginTop="43dp"
+        android:inputType="phone"
+        android:layout_toRightOf="@id/begin"
+        android:ems="10"/>
+
+    <TextView
+        android:id="@+id/end_date"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone"
+        android:layout_marginTop="56dp"
+        android:text="End date : "
+        android:textSize="20sp"
+        android:textColor="@color/primary"/>
+
+    <EditText
+        android:id="@+id/end"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/phone"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="48dp"
+        android:layout_toRightOf="@id/end_date"
+        android:autofillHints="yyyymmdd"
+        android:ems="10"
+        android:hint="dd/mm/yy"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/key_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_date"
+        android:layout_marginTop="54dp"
+        android:padding="10dp"
+        android:text="Key Word :"
+        android:textSize="20sp"
+        android:textColor="@color/primary"/>
+
+    <EditText
+        android:id="@+id/key_word_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="63dp"
+        android:layout_toRightOf="@id/key_word"
+        android:ems="10"
+        android:hint="enter some key words"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="553dp"
+        android:background="@color/primary"
+        android:textColor="@color/icons"
+        android:text="submit" />
+
+
+</RelativeLayout>

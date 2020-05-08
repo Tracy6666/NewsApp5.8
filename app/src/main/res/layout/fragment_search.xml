@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:id="@+id/begin_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:gravity="center_horizontal"
+        android:text="Begin date:"
+        android:layout_marginTop="50dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textColor="@color/primary"
+        />
+
+    <EditText
+        android:id="@+id/begin"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:hint="dd/mm/yy"
+        android:layout_marginTop="43dp"
+        android:inputType="phone"
+        android:layout_toRightOf="@id/begin_date"
+        android:ems="10"/>
+
+    <ImageButton
+        android:id="@+id/select_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_date_range_black_24dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_toRightOf="@id/begin"
+        android:layout_marginTop="43dp"/>
+
+    <TextView
+        android:id="@+id/end_date"
+        android:padding="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/begin"
+        android:layout_marginTop="56dp"
+        android:text="End date : "
+        android:textSize="20sp"
+        android:textColor="@color/primary"/>
+
+    <EditText
+        android:id="@+id/end"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/begin"
+        android:layout_marginLeft="2dp"
+        android:layout_marginTop="48dp"
+        android:layout_toRightOf="@id/end_date"
+        android:autofillHints="yyyymmdd"
+        android:ems="10"
+        android:hint="dd/mm/yy"
+        android:inputType="date"
+        />
+
+    <ImageButton
+        android:id="@+id/select_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/begin"
+        app:srcCompat="@drawable/ic_date_range_black_24dp"
+        android:backgroundTint="@android:color/transparent"
+        android:layout_toRightOf="@id/end"
+        android:layout_marginTop="43dp"/>
+
+    <TextView
+        android:id="@+id/key_word"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end_date"
+        android:layout_marginTop="54dp"
+        android:padding="10dp"
+        android:text="Key Word :"
+        android:textSize="20sp"
+        android:textColor="@color/primary"/>
+
+    <EditText
+        android:id="@+id/key_word_input"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/end"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="63dp"
+        android:layout_toRightOf="@id/key_word"
+        android:ems="10"
+        android:hint="enter some key words"
+        />
+
+    <Button
+        android:id="@+id/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="553dp"
+        android:background="@color/primary"
+        android:textColor="@color/icons"
+        android:text="submit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="16dp"
+        app:srcCompat="@drawable/ic_arrow_back_black_24dp"
+        android:layout_alignParentEnd="true"
+        android:visibility="invisible"/>
+
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:divider="@color/primary"
+        android:dividerHeight="1dp"
+        android:orientation="vertical"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/empty_state_textviewInsearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:textSize="20sp" />
+
+</RelativeLayout>

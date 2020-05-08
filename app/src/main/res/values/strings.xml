@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">NewsApplication</string>
+    <string name="no_internet">No Internet Connection</string>
+    <string name="back4app_server_url">https://parseapi.back4app.com/</string>
+    <string name="back4app_app_id">MgA63I1d6UP6XQKxKwUfa4Lb2d0jNygGpSVne0l1</string>
+    <string name="back4app_client_key">L0WRKcdSsiwpWWkOAGls0WyLE4nT9MtRXYNCxZd9</string>
+    <string name="title_activity_chats">ChatsActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="title_activity_message_board">MessageBoardActivity</string>
+</resources>
