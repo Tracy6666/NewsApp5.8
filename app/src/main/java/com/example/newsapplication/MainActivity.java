@@ -15,11 +15,6 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity  {
 
-    private NewsAdapter adapter;
-    private String JsonLink = "http://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=84499478883a4727bfba30a6a52cc320";
-    private String LOG_TAG = MainActivity.class.getName();
-    private TextView emptyView;
-    private static final int newsId = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
