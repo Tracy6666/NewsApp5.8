@@ -4,13 +4,19 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.parse.FindCallback;
@@ -30,7 +36,6 @@ public class ChatFragment extends Fragment {
     View rootview;
     Button button;
     private final String currentUser = ParseUser.getCurrentUser().getString("name");
-
     ArrayList<String> messages = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
 
@@ -38,33 +43,6 @@ public class ChatFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootview = inflater.inflate(R.layout.fragment_chat,container,false);
-
-        ListView chatListView = (ListView) rootview.findViewById(R.id.chatListView);
-
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
-        //query.whereEqualTo("sender", currentUser);
-        query.whereLessThanOrEqualTo("createdAt", new Date());
-        query.setLimit(15);
-        query.orderByAscending("createdAt");
-        query.findInBackground(new FindCallback<ParseObject>() {
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e == null) {
-                    for(int i= 0 ; i < objects.size(); i++){
-                        String message = objects.get(i).getString("content");
-                        String sender = objects.get(i).getString("sender");
-                        messages.add(sender + ": " + message.toString());
-                    }
-
-                } else {
-                    // Something is wrong
-                }
-            }
-        });
-
-        arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, messages);
-        chatListView.setAdapter(arrayAdapter);
-        arrayAdapter.notifyDataSetChanged();
-
 
         button = rootview.findViewById(R.id.sendChatButton);
         button.setOnClickListener(new AdapterView.OnClickListener(){
@@ -97,7 +75,41 @@ public class ChatFragment extends Fragment {
             }
         });
 
-
         return rootview;
     }
+
+    @Override
+    public void onResume(){
+        super.onResume();
+        loadConversationList();
+    }
+
+    private void loadConversationList() {
+        ListView chatListView = (ListView) rootview.findViewById(R.id.chatListView);
+
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
+        //query.whereEqualTo("sender", currentUser);
+        query.whereLessThanOrEqualTo("createdAt", new Date());
+        query.orderByDescending("createdAt").setLimit(15);
+        query.findInBackground(new FindCallback<ParseObject>() {
+            public void done(List<ParseObject> objects, ParseException e) {
+                if (objects != null && objects.size() >0) {
+                    for(int i= objects.size()-1 ; i >= 0; i--){
+                        String message = objects.get(i).getString("content");
+                        String sender = objects.get(i).getString("sender");
+                        messages.add(sender + ": " + message.toString());
+                        arrayAdapter.notifyDataSetChanged();
+                    }
+                }
+
+            }
+        });
+
+        arrayAdapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, messages);
+        chatListView.setAdapter(arrayAdapter);
+        chatListView.setTranscriptMode(AbsListView.TRANSCRIPT_MODE_ALWAYS_SCROLL);
+        chatListView.setStackFromBottom(true);
+
+    }
+
 }
