@@ -132,7 +132,8 @@ public class ChatFragment extends Fragment {
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
         //query.whereEqualTo("sender", currentUser);
         query.whereLessThanOrEqualTo("createdAt", new Date());
-        query.orderByDescending("createdAt").setLimit(15);
+        query.orderByDescending("createdAt");
+        query.setLimit(15);
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (objects != null && objects.size() >0) {
@@ -154,7 +155,6 @@ public class ChatFragment extends Fragment {
                             loadConversationList();
                     }
                 },10000);
-
             }
         });
 
