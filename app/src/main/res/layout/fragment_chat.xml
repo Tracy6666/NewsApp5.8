@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".ChatActivity">
 
+    <ListView
+        android:id="@+id/chatListView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/chatEditText"
+        android:layout_marginBottom="-1dp"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="1dp"
+        tools:listitem="@layout/row_chat_left"
+        />
+
     <EditText
         android:id="@+id/chatEditText"
         android:layout_width="311dp"
@@ -26,14 +37,7 @@
         tools:layout_editor_absoluteX="13dp"
         tools:layout_editor_absoluteY="551dp" />
 
-    <ListView
-        android:id="@+id/chatListView"
-        android:layout_width="409dp"
-        android:layout_height="549dp"
-        android:layout_above="@+id/chatEditText"
-        android:layout_marginBottom="2dp"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp" />
+
 
     <Button
         android:id="@+id/sendChatButton"
@@ -45,7 +49,7 @@
         android:layout_marginTop="-1dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="7dp"
-        android:onClick="sendChat"
+        android:onClick=""
         android:text="Send" />
 
 </RelativeLayout>
