@@ -104,8 +104,8 @@ public class ChatFragment extends Fragment {
         String s = txt.getText().toString();
         final ModelChat c = new ModelChat(s, new Date() , currentUser);
         c.setStatus(ModelChat.STATUS_SENDING);
-        messages.add(c);
-        adp.notifyDataSetChanged();
+        //messages.add(c);
+        //adp.notifyDataSetChanged();
         txt.setText(null);
 
         ParseObject message = new ParseObject("Message");
@@ -131,9 +131,20 @@ public class ChatFragment extends Fragment {
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
         //query.whereEqualTo("sender", currentUser);
-        query.whereLessThanOrEqualTo("createdAt", new Date());
-        query.orderByDescending("createdAt");
-        query.setLimit(15);
+        if(lastMsgDate == null) {
+            lastMsgDate = new Date();
+            query.whereLessThanOrEqualTo("createdAt", lastMsgDate);
+            query.orderByDescending("createdAt");
+            query.setLimit(15);
+        } else {
+            Date lastLoadtime = lastMsgDate;
+            Date thistimeCreatedAt = new Date();
+            query.whereGreaterThanOrEqualTo("createdAt", lastLoadtime);
+            query.whereLessThan("createdAt", thistimeCreatedAt);
+            lastMsgDate = thistimeCreatedAt;
+            query.orderByDescending("createdAt");
+        }
+
         query.findInBackground(new FindCallback<ParseObject>() {
             public void done(List<ParseObject> objects, ParseException e) {
                 if (objects != null && objects.size() >0) {
@@ -141,9 +152,9 @@ public class ChatFragment extends Fragment {
                         ParseObject po = objects.get(i);
                         ModelChat c = new ModelChat(po.getString("content"), po.getCreatedAt() , po.getString("sender"));
                         messages.add(c);
-                        if (lastMsgDate == null
-                                || lastMsgDate.before(c.getDate()))
-                            lastMsgDate = c.getDate();
+//                        if (lastMsgDate == null
+//                                || lastMsgDate.before(c.getDate()))
+//                            lastMsgDate = c.getDate();
                         adp.notifyDataSetChanged();
                     }
                 }
@@ -154,7 +165,7 @@ public class ChatFragment extends Fragment {
                         if (isRunning)
                             loadConversationList();
                     }
-                },10000);
+                },100);
             }
         });
 
