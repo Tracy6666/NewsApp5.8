@@ -1,6 +1,7 @@
 package com.example.newsapplication;
 
 import android.content.Context;
+import android.graphics.ImageDecoder;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,7 @@ public class ChatFragment extends Fragment {
     private ChatAdapter adp;
     private EditText txt;
     private Date lastMsgDate;
+    private String buddy;
     //flag to hold if activity is running or not
     private boolean isRunning;
     private static Handler handler;
@@ -69,7 +71,6 @@ public class ChatFragment extends Fragment {
         txt = (EditText) rootview.findViewById(R.id.chatEditText);
         txt.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_IME_MULTI_LINE);
 
-        handler = new Handler();
 
         button = rootview.findViewById(R.id.sendChatButton);
         button.setOnClickListener(new AdapterView.OnClickListener() {
@@ -80,6 +81,8 @@ public class ChatFragment extends Fragment {
             };
 
         });
+
+        handler = new Handler();
 
         return rootview;
     }
@@ -104,8 +107,8 @@ public class ChatFragment extends Fragment {
         String s = txt.getText().toString();
         final ModelChat c = new ModelChat(s, new Date() , currentUser);
         c.setStatus(ModelChat.STATUS_SENDING);
-        messages.add(c);
-        adp.notifyDataSetChanged();
+        //messages.add(c);
+        //adp.notifyDataSetChanged();
         txt.setText(null);
 
         ParseObject message = new ParseObject("Message");
@@ -125,18 +128,28 @@ public class ChatFragment extends Fragment {
 
     }
 
-
     private void loadConversationList() {
-//        ListView chatListView = (ListView) rootview.findViewById(R.id.chatListView);
 
         ParseQuery<ParseObject> query = ParseQuery.getQuery("Message");
-        //query.whereEqualTo("sender", currentUser);
-        query.whereLessThanOrEqualTo("createdAt", new Date());
-        query.orderByDescending("createdAt");
-        query.setLimit(15);
+        if (messages.size() == 0){
+            //load all messages
+            query.whereLessThanOrEqualTo("createdAt", new Date());
+            query.orderByDescending("createdAt");
+            query.setLimit(15);
+        }else{
+            //load only newly received message
+            if (lastMsgDate != null)
+                query.whereGreaterThan("createdAt", lastMsgDate);
+            query.whereLessThanOrEqualTo("createdAt", new Date());
+            query.orderByDescending("createdAt");
+        }
+
         query.findInBackground(new FindCallback<ParseObject>() {
+
+            @Override
             public void done(List<ParseObject> objects, ParseException e) {
                 if (objects != null && objects.size() >0) {
+
                     for(int i= objects.size()-1 ; i >= 0; i--){
                         ParseObject po = objects.get(i);
                         ModelChat c = new ModelChat(po.getString("content"), po.getCreatedAt() , po.getString("sender"));
@@ -154,7 +167,7 @@ public class ChatFragment extends Fragment {
                         if (isRunning)
                             loadConversationList();
                     }
-                },10000);
+                },1000);
             }
         });
 
