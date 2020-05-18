@@ -27,7 +27,6 @@ public class HomeFragment extends Fragment implements androidx.core.app.LoaderMa
     @Nullable
     View rootView;
     private NewsAdapter adapter;
-   // private String JsonLink = "https://newsapi.org/v2/top-headlines?country=us&category=health&apiKey=84499478883a4727bfba30a6a52cc320";
     private String JsonLink = "http://newsapi.org/v2/top-headlines?country=us&apiKey=84499478883a4727bfba30a6a52cc320";
     private String LOG_TAG = MainActivity.class.getName();
     private TextView emptyView;
@@ -80,10 +79,7 @@ public class HomeFragment extends Fragment implements androidx.core.app.LoaderMa
         // parse breaks apart the URI string that's passed into its parameter
         Uri baseUri = Uri.parse(JsonLink);
         Uri.Builder uriBuilder = baseUri.buildUpon();
-
-      //  uriBuilder.appendQueryParameter("q", "health");
         uriBuilder.appendQueryParameter("api-key", "test");
-
         Log.e(LOG_TAG, uriBuilder.toString());
         return new NewsLoader(getContext(), uriBuilder.toString());
 
